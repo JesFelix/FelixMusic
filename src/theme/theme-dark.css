@@ -1,0 +1,102 @@
+/* ============================================================
+   FelixMusic 主题系统 — 暗色回退值
+
+   当暗色主题 JSON 文件被删除后，系统通过此文件恢复暗色外观。
+
+   选择器 :root[data-theme="dark"] 的优先级高于 :root（theme-light.css），
+   确保亮色 / 暗色回退各不影响。
+
+   data-theme 由 engine.ts 的 applyThemeFile() 设置。
+   当所有主题 JSON 都被删除时，系统保留 data-theme 属性，
+   因此暗色用户无需 JSON 文件即可继续使用暗色界面。
+   ============================================================ */
+
+:root[data-theme="dark"] {
+  /* ---- 品牌色（18 级，暗色调适配） ---- */
+  --fm-base-color-brand-50: #1F1852;
+  --fm-base-color-brand-100: #2D2555;
+  --fm-base-color-brand-150: #352C66;
+  --fm-base-color-brand-200: #42367A;
+  --fm-base-color-brand-250: #4C3D8A;
+  --fm-base-color-brand-300: #524493;
+  --fm-base-color-brand-350: #624EB8;
+  --fm-base-color-brand-400: #7B61FF;
+  --fm-base-color-brand-450: #8B75F0;
+  --fm-base-color-brand-500: #8B75F0;
+  --fm-base-color-brand-550: #9A85F5;
+  --fm-base-color-brand-600: #A08EF5;
+  --fm-base-color-brand-650: #AC9AF7;
+  --fm-base-color-brand-700: #B8AAFA;
+  --fm-base-color-brand-750: #C5B8FB;
+  --fm-base-color-brand-800: #D1C8FF;
+  --fm-base-color-brand-900: #E3DEFF;
+  --fm-base-color-brand-950: #F3F0FF;
+
+  /* ---- 强调色 ---- */
+  --fm-base-color-accent-pink: #FB8EB4;
+  --fm-base-color-accent-mint: #5EDCB4;
+  --fm-base-color-accent-blue: #609AFF;
+
+  /* ---- 功能色 ---- */
+  --fm-base-color-functional-red: #F87171;
+  --fm-base-color-functional-orange: #FB923C;
+  --fm-base-color-functional-green: #4ADE80;
+
+  /* ---- 灰色阶（18 级，暗色调适配） ---- */
+  --fm-base-color-gray-50: #0A0A0F;
+  --fm-base-color-gray-100: #111118;
+  --fm-base-color-gray-150: #18181F;
+  --fm-base-color-gray-200: #1A1A24;
+  --fm-base-color-gray-250: #20202C;
+  --fm-base-color-gray-300: #363654;
+  --fm-base-color-gray-350: #45456B;
+  --fm-base-color-gray-400: #5A5A7A;
+  --fm-base-color-gray-450: #707090;
+  --fm-base-color-gray-500: #8888A0;
+  --fm-base-color-gray-550: #9696AE;
+  --fm-base-color-gray-600: #A0A0B8;
+  --fm-base-color-gray-650: #B0B0C5;
+  --fm-base-color-gray-700: #C0C0D0;
+  --fm-base-color-gray-750: #CECEDA;
+  --fm-base-color-gray-800: #D8D8E4;
+  --fm-base-color-gray-900: #ECECF2;
+  --fm-base-color-gray-950: #F5F5FA;
+
+  /* ---- 语义色 ---- */
+  --fm-base-color-semantic-primary: var(--fm-base-color-brand-500);
+  --fm-base-color-semantic-primaryHover: var(--fm-base-color-brand-400);
+  --fm-base-color-semantic-primaryActive: var(--fm-base-color-brand-600);
+  --fm-base-color-semantic-primaryLight: var(--fm-base-color-brand-100);
+  --fm-base-color-semantic-success: var(--fm-base-color-accent-mint);
+  --fm-base-color-semantic-warning: var(--fm-base-color-functional-orange);
+  --fm-base-color-semantic-danger: var(--fm-base-color-functional-red);
+  --fm-base-color-semantic-info: var(--fm-base-color-accent-blue);
+
+  /* ---- 背景 ---- */
+  --fm-base-color-background-app: #0F0F1A;
+  --fm-base-color-background-surface: #1A1A2E;
+  --fm-base-color-background-elevated: #24243A;
+  --fm-base-color-background-overlay: rgba(0, 0, 0, 0.6);
+  --fm-base-color-background-hover: rgba(139, 117, 240, 0.08);
+  --fm-base-color-background-active: rgba(139, 117, 240, 0.16);
+
+  /* ---- 文字 ---- */
+  --fm-base-color-text-primary: #F5F5F7;
+  --fm-base-color-text-secondary: #D1D5DB;
+  --fm-base-color-text-tertiary: #9CA3AF;
+  --fm-base-color-text-overlay: #9CA3AF;
+  --fm-base-color-text-inverse: #1A1A1A;
+  --fm-base-color-text-link: var(--fm-base-color-brand-400);
+
+  /* ---- 边框 ---- */
+  --fm-base-color-border-default: #2D2D44;
+  --fm-base-color-border-subtle: #1E1E32;
+  --fm-base-color-border-focus: var(--fm-base-color-brand-400);
+  --fm-base-color-border-error: var(--fm-base-color-functional-red);
+
+  /* ---- 阴影（暗色调适配） ---- */
+  --fm-base-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
+  --fm-base-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --fm-base-shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.4);
+  --fm-base-shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.5);
+}

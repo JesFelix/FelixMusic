@@ -1,0 +1,129 @@
+@import "@/theme/theme-light.css";
+@import "@/theme/theme-dark.css";
+
+/* ================================ 字体导入 ================================ */
+
+@font-face {
+  font-family: "test";
+  src: url("../font/test.TTF");
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+
+/* ============================================================
+   全局基础样式
+   ============================================================ */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-family: var(--fm-base-font-family-sans);
+  /* font-family: "test", sans-serif; */
+  font-size: var(--fm-base-font-size-base);
+  line-height: var(--fm-base-font-lineHeight-normal);
+  color: var(--fm-base-color-text-primary);
+  background: transparent;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--fm-base-color-gray-300);
+  border-radius: var(--fm-base-radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--fm-base-color-gray-400);
+}
+
+::selection {
+  background-color: var(--fm-base-color-semantic-primaryLight);
+  color: var(--fm-base-color-semantic-primary);
+}
+
+:root {
+  /* ---- 间距 ---- =================== */
+  --fm-base-spacing-xs: 4px;
+  --fm-base-spacing-6: 6px;
+  --fm-base-spacing-sm: 8px;
+  --fm-base-spacing-10: 10px;
+  --fm-base-spacing-12: 12px;
+  --fm-base-spacing-14: 14px;
+  --fm-base-spacing-md: 16px;
+  --fm-base-spacing-18: 18px;
+  --fm-base-spacing-lg: 24px;
+  --fm-base-spacing-xl: 32px;
+  --fm-base-spacing-2xl: 48px;
+  --fm-base-spacing-3xl: 64px;
+
+  /* ---- 圆角 ---- */
+  --fm-base-radius-sm: 4px;
+  --fm-base-radius-6: 6px;
+  --fm-base-radius-md: 8px;
+  --fm-base-radius-10: 10px;
+  --fm-base-radius-lg: 12px;
+  --fm-base-radius-14: 14px;
+  --fm-base-radius-xl: 16px;
+  --fm-base-radius-18: 18px;
+  --fm-base-radius-2xl: 20px;
+  --fm-base-radius-full: 9999px;
+
+  /* ---- 字体 ---- */
+  --fm-base-font-family-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    'PingFang SC', 'Microsoft YaHei', 'Hiragino Sans GB', sans-serif;
+  --fm-base-font-family-mono: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+  --fm-base-font-size-xs: 12px;
+  --fm-base-font-size-sm: 13px;
+  --fm-base-font-size-base: 14px;
+  --fm-base-font-size-lg: 16px;
+  --fm-base-font-size-xl: 18px;
+  --fm-base-font-size-2xl: 24px;
+  --fm-base-font-size-3xl: 32px;
+  --fm-base-font-weight-normal: 400;
+  --fm-base-font-weight-medium: 500;
+  --fm-base-font-weight-semibold: 600;
+  --fm-base-font-weight-bold: 700;
+  --fm-base-font-lineHeight-tight: 1.25;
+  --fm-base-font-lineHeight-normal: 1.5;
+  --fm-base-font-lineHeight-relaxed: 1.75;
+
+  /* ---- 过渡 ---- */
+  --fm-base-transition-fast: 150ms ease;
+  --fm-base-transition-normal: 250ms ease;
+  --fm-base-transition-slow: 350ms ease;
+
+  /* ---- 页面基础数据 ---- */
+  --fm-base-content-page-width: 1280px;
+}
+
+.default-page-format {
+  width: 100%;
+  max-width: var(--fm-base-content-page-width);
+  margin: 0 auto;
+  height: 100%;
+  overflow-y: auto;
+  padding: var(--fm-base-spacing-sm);
+  /* 页面内边距 */
+}

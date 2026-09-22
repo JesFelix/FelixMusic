@@ -1,0 +1,103 @@
+{
+  "meta": {
+    "id": "default-light",
+    "name": "浅色",
+    "author": "FelixMusic",
+    "version": "1.0.0",
+    "description": "默认亮色主题，紫色品牌风格",
+    "isDark": false,
+    "builtIn": true
+  },
+  "base": {
+    "color": {
+      "brand": {
+        "50": "#F5F2FF",
+        "100": "#EDE8FF",
+        "150": "#E2DAFF",
+        "200": "#D1C8FF",
+        "250": "#BEB0FF",
+        "300": "#B3A4FF",
+        "350": "#9B88FF",
+        "400": "#7B61FF",
+        "450": "#6E5DF5",
+        "500": "#6C5CE7",
+        "550": "#5F4FD8",
+        "600": "#5A4BD1",
+        "650": "#4F3FC4",
+        "700": "#4A3DB5",
+        "750": "#40349F",
+        "800": "#3D3299",
+        "900": "#342B7D",
+        "950": "#1F1852"
+      },
+      "accent": {
+        "pink": "#F9739F",
+        "mint": "#42C99A",
+        "blue": "#4285F4"
+      },
+      "functional": {
+        "red": "#EF4444",
+        "orange": "#F76C35",
+        "green": "#22C55E"
+      },
+      "gray": {
+        "50": "#FAFAFA",
+        "100": "#F5F5F5",
+        "150": "#EEEEEE",
+        "200": "#E5E7EB",
+        "250": "#DDDFE3",
+        "300": "#D1D5DB",
+        "350": "#B9BDC4",
+        "400": "#9CA3AF",
+        "450": "#868E9B",
+        "500": "#6B7280",
+        "550": "#5D6470",
+        "600": "#4B5563",
+        "650": "#414956",
+        "700": "#374151",
+        "750": "#2D3342",
+        "800": "#1F2937",
+        "900": "#111827",
+        "950": "#0A0A0F"
+      },
+      "semantic": {
+        "primary": "{base.color.brand.500}",
+        "primaryHover": "{base.color.brand.400}",
+        "primaryActive": "{base.color.brand.600}",
+        "primaryLight": "{base.color.brand.50}",
+        "success": "{base.color.accent.mint}",
+        "warning": "{base.color.functional.orange}",
+        "danger": "{base.color.functional.red}",
+        "info": "{base.color.accent.blue}"
+      },
+      "background": {
+        "app": "#F5F5F7",
+        "surface": "#FFFFFF",
+        "elevated": "#F3F4F6",
+        "overlay": "rgba(0, 0, 0, 0.4)",
+        "hover": "rgba(108, 92, 231, 0.06)",
+        "active": "rgba(108, 92, 231, 0.12)"
+      },
+      "text": {
+        "primary": "#1A1A1A",
+        "secondary": "#374151",
+        "tertiary": "#6B7280",
+        "overlay": "#677080",
+        "inverse": "#FFFFFF",
+        "link": "{base.color.brand.500}"
+      },
+      "border": {
+        "default": "#E5E7EB",
+        "subtle": "#F3F4F6",
+        "focus": "{base.color.brand.500}",
+        "error": "{base.color.functional.red}"
+      }
+    },
+    "shadow": {
+      "sm": "0 1px 2px rgba(0, 0, 0, 0.04)",
+      "md": "0 4px 12px rgba(0, 0, 0, 0.06)",
+      "lg": "0 8px 24px rgba(0, 0, 0, 0.08)",
+      "xl": "0 16px 48px rgba(0, 0, 0, 0.12)"
+    }
+  }
+}
