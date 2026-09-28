@@ -10,11 +10,11 @@
         @mouseleave="handleMouseLeave"
       >
         <a-space class="item-info" align="end">
-          <span class="item-title">华语经典</span>
+          <span class="item-title">华语经典</span> 
           <span class="item-meta">100首</span>
         </a-space>
         <div class="item-content">
-          <div class="item-desc" :class="descAnimClass">
+          <div class="item-desc">
             <span class="item-desc-text">那些年陪伴我们的经典旋律</span>
           </div>
           <div class="item-play" :class="playAnimClass">
@@ -72,33 +72,11 @@ const handleMouseLeave = (): void => {
   hovered.value = false
 }
 
-/** .item-desc 的动画类：进入 fadeIn，移出 fadeOut */
-const descAnimClass = computed(() => {
-  if (hovered.value) return 'animate__animated animate__fadeIn'
-  return hasHovered.value ? 'animate__animated animate__fadeOut' : ''
-})
-
 /** .item-play 的动画类：进入 fadeInRight，移出 fadeOutRight */
 const playAnimClass = computed(() => {
   if (hovered.value) return 'animate__animated animate__fadeInRight'
   return hasHovered.value ? 'animate__animated animate__fadeOutRight' : ''
 })
-
-// ============================================================================
-// 收藏数据（模拟数据，后续接入后端 API）
-// ============================================================================
-
-/** 预置渐变色方案（用于收藏封面占位） */
-const gradientPresets = [
-  'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-  'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
-  'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
-  'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
-  'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
-  'linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%)',
-  'linear-gradient(135deg, #fccb90 0%, #d57eeb 100%)',
-  'linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%)',
-]
 
 </script>
 
@@ -168,7 +146,7 @@ const gradientPresets = [
         justify-content: center; // 内容垂直居中
         color: var(--fm-base-color-text-secondary);
         font-size: var(--fm-base-font-size-base);
-        opacity: 0; // 默认隐藏，悬停时通过动画进入
+        // opacity: 0; // 默认隐藏，悬停时通过动画进入
 
         .item-desc-text {
           display: -webkit-box;

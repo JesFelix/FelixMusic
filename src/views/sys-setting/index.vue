@@ -62,7 +62,7 @@ const sections = ref<SettingItem[]>([
             {
                 id: 'associate',
                 label: '关联',
-                type: 'radio',
+                type: 'optional',
                 options: [
                     { id: '1', label: '将FelixMusic设置为默认播放器', value: '1', isSelect: false }
                 ],
