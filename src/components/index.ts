@@ -18,14 +18,13 @@ import type { App, Component } from 'vue'
 
 import FmIcon from './fm-icon/index.vue'
 import FmSearchInput from './fm-search-input/index.vue'
-import FmRadioGroup from './fm-radio-group/index.vue'
 import { loadSvgIcons } from './fm-icon'
 
 // ============================================================================
 // 统一导出：供按需 import 使用
 // ============================================================================
 
-export { FmIcon, FmSearchInput, FmRadioGroup, loadSvgIcons }
+export { FmIcon, FmSearchInput, loadSvgIcons }
 
 // ============================================================================
 // 全局注册：作为 Vue 插件，app.use(fmComponents) 一次性完成
@@ -36,8 +35,7 @@ export { FmIcon, FmSearchInput, FmRadioGroup, loadSvgIcons }
 /** 需要全局注册的组件清单 */
 const componentList: Array<{ name: string; component: Component }> = [
     { name: 'FmIcon', component: FmIcon },
-    { name: 'FmSearchInput', component: FmSearchInput },
-    { name: 'FmRadioGroup', component: FmRadioGroup },
+    { name: 'FmSearchInput', component: FmSearchInput }
 ]
 
 /** 统一注册插件 */
