@@ -4,33 +4,42 @@
       <div class="settings-heading">{{ section.label }}</div>
 
       <div class="setting-content">
-        <template v-for="option in section.settings" :key="option.id">
+        <template v-for="item in section.settings" :key="item.id">
           <!-- 下拉选择 -->
-          <div v-if="option.type === 'select'" class="setting-item">
-            <span class="setting-font">{{ option.label }}</span>
-            <a-select v-model="selectedValues[option.id]" :style="selectStyle" :aria-label="option.label">
-              <a-option v-for="opt in option.options" :key="opt" :value="opt">{{ opt }}</a-option>
+          <div v-if="item.type === 'select'" class="setting-item">
+            <span class="setting-font">{{ item.label }}</span>
+            <a-select :model-value="getIsSelect(item)" :style="selectStyle" @change="handleSelectChange(item, $event)">
+              <a-option v-for="opt in item.options" :key="opt.key" :value="opt.value">{{ opt.label }}</a-option>
             </a-select>
           </div>
 
           <!-- 单选 -->
-          <div v-else-if="option.type === 'radio'" class="setting-item">
-            <span class="setting-font">{{ option.label }}</span>
-            <a-radio-group v-model="selectedValues[option.id]" :aria-label="option.label">
-              <a-radio v-for="opt in option.options" :key="opt.id" :value="opt.value">
-                {{ opt.label }}
-              </a-radio>
+          <div v-else-if="item.type === 'radio'" class="setting-item">
+            <span class="setting-font">{{ item.label }}</span>
+            <a-radio-group :model-value="getIsSelect(item)" @change="handleSelectChange(item, $event)">
+              <a-radio v-for="opt in item.options" :key="opt.key" :value="opt.value">{{ opt.label }}</a-radio>
             </a-radio-group>
           </div>
 
-          <!-- 可选项 -->
-          <div v-else-if="option.type === 'optional'" class="setting-item">
-            <span class="setting-font">{{ option.label }}</span>
+          <!-- 可选 -->
+          <div v-else-if="item.type === 'optional'" class="setting-item">
+            <span class="setting-font">{{ item.label }}</span>
             <div class="optional-list">
-              <a-checkbox v-for="opt in option.options" :key="opt.id" v-model="checkedValues[opt.id]" class="optional-option">
+              <a-checkbox
+                v-for="(opt, index) in item.options"
+                :key="opt.key ?? index"
+                :model-value="opt.isSelect === true"
+                class="optional-option"
+                @change="handleCheckboxChange(opt, $event)"
+              >
                 {{ opt.label }}
               </a-checkbox>
             </div>
+          </div>
+
+          <!-- 快捷键 -->
+          <div v-else-if="item.type === 'shortcuts'" class="setting-item">
+            
           </div>
         </template>
       </div>
@@ -39,37 +48,33 @@
 </template>
 
 <script lang="ts" setup name="SettingsContent">
-import { reactive, ref } from 'vue'
-
 // ============================================================================
 // 类型定义（export 供 index.vue 使用）
 // ============================================================================
 
-/** 单个设置项：根据 type 区分渲染哪种组件（判别联合，便于模板内收窄类型） */
-export type SettingOption =
-  | {
-      id: string
-      label: string
-      /** 选择组件（下拉） */
-      type: 'select'
-      /** 下拉选项 */
-      options?: string[]
-      /** 默认选中值 */
-      value?: string
-    }
-  | {
-      id: string
-      label: string
-      /** 单选、复选或可选项 */
-      type: 'radio' | 'checkbox' | 'optional'
-      options?: SettingOptionItem[]
-    }
-
-interface SettingOptionItem {
-  id: string
+// type1: 下拉选择
+type SelectItem = {
+  key: string
   label: string
   value: string
-  isSelect?: boolean
+  isSelect: boolean
+}
+
+// type2: 快捷键
+type ShortcutsItem = {
+  id: string
+  label: string
+  shortcutKey: string
+  globalShortcutKey: string
+  conflict?: boolean
+}
+
+type SettingOption = {
+  id: string
+  label: string | string[]
+  type: 'select' | 'radio' | 'checkbox' | 'optional' | 'shortcuts',
+  defaultValue?: string,
+  options?: SelectItem[] | ShortcutsItem[]
 }
 
 /** 设置分组：一个导航项 + 该分组下的设置项列表 */
@@ -88,28 +93,39 @@ const props = defineProps<{
 }>()
 
 // 内容容器引用（供后续滚动定位使用）
-const contentRef = ref<HTMLElement | null>(null)
+// const contentRef = ref<HTMLElement | null>(null)
 
-// 为每个设置项维护响应式值，保证单选、下拉和可选项都能正确回显与修改
-const selectedValues = reactive<Record<string, string>>({})
-const checkedValues = reactive<Record<string, boolean>>({})
-
-for (const section of props.data) {
-  for (const option of section.settings) {
-    if (option.type === 'select') {
-      selectedValues[option.id] = option.value ?? option.options?.[0] ?? ''
-    } else if (option.type === 'radio') {
-      const selected = option.options?.find(item => item.isSelect) ?? option.options?.[0]
-      selectedValues[option.id] = selected?.value ?? ''
-    } else if (option.type === 'optional') {
-      for (const item of option.options ?? []) {
-        checkedValues[item.id] = item.isSelect === true
-      }
-    }
-  }
+// ============================================================================
+// 工具方法
+// ============================================================================
+const getIsSelect = (option: SettingOption) => {
+  return option.options?.find(item => item.isSelect)?.value ?? ''
 }
 
+// 处理下拉选择、单选、可选的改变事件 radio
+const handleSelectChange = (
+  item: SettingOption,
+  value: unknown
+): void => {
+  item.options?.forEach(option => {
+    option.isSelect = option.value === String(value)
+  })
+}
+
+// 处理多选的改变事件 checkbox
+const handleCheckboxChange = (
+  item: SelectItem,
+  value: unknown
+): void => {
+  if (typeof value !== 'boolean') {
+    return
+  }
+  item.isSelect = value
+}
+
+// ============================================================================
 // 选择组件统一样式
+// ============================================================================
 const selectStyle = {
   width: '130px',
   border: '1px solid var(--fm-base-color-brand-300)',
@@ -193,5 +209,10 @@ const selectStyle = {
   .optional-option {
     color: var(--fm-base-color-text-secondary);
   }
+}
+
+.shortcuts-header{
+  width: 100%;
+  height: 46px;
 }
 </style>

@@ -38,16 +38,44 @@ const sections = ref<SettingItem[]>([
                 id: 'regular-font',
                 label: '字体选择',
                 type: 'select',
-                value: '默认',
-                options: ['默认', '平方赖江湖飞扬体'],
+                options: [
+                    {
+                        key: 'font-1',
+                        label: '默认',
+                        value: '默认',
+                        isSelect: true,
+                    },
+                    {
+                        key: 'font-2',
+                        label: '平方赖江湖飞扬体',
+                        value: '平方赖江湖飞扬体',
+                        isSelect: false,
+                    }
+                ]
             },
             {
                 id: 'start-open',
                 label: '开机启动',
                 type: 'radio',
                 options: [
-                    { id: '1', label: '开启', value: '1', isSelect: false },
-                    { id: '2', label: '关闭', value: '2', isSelect: true },
+                    {
+                        key: 'start-open-3',
+                        label: '关闭',
+                        value: '1',
+                        isSelect: true
+                    },
+                    {
+                        key: 'start-open-1',
+                        label: '开机自启(前台运行)',
+                        value: '2',
+                        isSelect: false
+                    },
+                    {
+                        key: 'start-open-2',
+                        label: '开机自启(后台运行)',
+                        value: '3',
+                        isSelect: false
+                    }
                 ],
             },
             {
@@ -55,8 +83,18 @@ const sections = ref<SettingItem[]>([
                 label: '关闭主面板',
                 type: 'radio',
                 options: [
-                    { id: '1', label: '最小化托盘，不退出程序', value: '1', isSelect: true },
-                    { id: '2', label: '退出程序', value: '2', isSelect: false },
+                    { 
+                        key: 'close-1', 
+                        label: '最小化托盘，不退出程序', 
+                        value: '1', 
+                        isSelect: true 
+                    },
+                    { 
+                        key: 'close-2', 
+                        label: '退出程序', 
+                        value: '2', 
+                        isSelect: false 
+                    },
                 ],
             },
             {
@@ -64,12 +102,43 @@ const sections = ref<SettingItem[]>([
                 label: '关联',
                 type: 'optional',
                 options: [
-                    { id: '1', label: '将FelixMusic设置为默认播放器', value: '1', isSelect: false }
+                    { 
+                        key: 'associate-1', 
+                        label: '将FelixMusic设置为默认播放器', 
+                        value: '1', 
+                        isSelect: false 
+                    }
                 ],
             },
         ],
     },
-    { id: 'shortcuts', label: '快捷键', settings: [] },
+    {
+        id: 'shortcuts',
+        label: '快捷键',
+        settings: [
+            {
+                id: 'shortcuts-title',
+                label: ["功能说明", "快捷键", "全局快捷键"],
+                type: 'shortcuts',
+                options: [
+                    {
+                        id: "play-shortcut",
+                        label: "播放/暂停",
+                        shortcutKey: "Ctrl + P",
+                        globalShortcutKey: "Ctrl + Alt + P",
+                        conflict: false
+                    },
+                    {
+                        id: "next-shortcut",
+                        label: "下一首",
+                        shortcutKey: "Ctrl + N",
+                        globalShortcutKey: "Ctrl + Alt + N",
+                        conflict: false
+                    }
+                ]
+            }
+        ]
+    },
     { id: 'play', label: '播放', settings: [] },
     { id: 'download', label: '下载', settings: [] },
 ])
